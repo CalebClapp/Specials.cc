@@ -1,0 +1,51 @@
+{
+  "monday": {
+    "La Fiamma Woodfire Pizza": {
+      "dish": "8\" Pizza w/ Garden Salad",
+      "price": "8.75",
+      "note": "Served until 4:00PM every day."
+    }
+  },
+  "tuesday": {
+    "La Fiamma Woodfire Pizza": {
+      "dish": "8\" Pizza w/ Garden Salad",
+      "price": "8.75",
+      "note": "Served until 4:00PM every day."
+    }
+  },
+  "wednesday": {
+    "La Fiamma Woodfire Pizza": {
+      "dish": "8\" Pizza w/ Garden Salad",
+      "price": "8.75",
+      "note": "Served until 4:00PM every day."
+    }
+  },
+  "thursday": {
+    "La Fiamma Woodfire Pizza": {
+      "dish": "8\" Pizza w/ Garden Salad",
+      "price": "8.75",
+      "note": "Served until 4:00PM every day."
+    }
+  },
+  "friday": {
+    "La Fiamma Woodfire Pizza": {
+      "dish": "8\" Pizza w/ Garden Salad",
+      "price": "8.75",
+      "note": "Served until 4:00PM every day."
+    }
+  },
+  "saturday": {
+    "La Fiamma Woodfire Pizza": {
+      "dish": "8\" Pizza w/ Garden Salad",
+      "price": "8.75",
+      "note": "Served until 4:00PM every day."
+    }
+  },
+  "sunday": {
+    "La Fiamma Woodfire Pizza": {
+      "dish": "8\" Pizza w/ Garden Salad",
+      "price": "8.75",
+      "note": "Served until 4:00PM every day."
+    }
+  }
+}
