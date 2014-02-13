@@ -37,7 +37,7 @@
                   <?php echo $dish; ?>
                 </td>
               <?php 
-                $meta_keys = ['price','note'];
+                $meta_keys = array('price','note');
                 foreach($meta as $key => $value) { 
                   if(in_array($key, $meta_keys)) { ?>
                     <td class="entry-<?php echo $key; ?>">
