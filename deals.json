@@ -1,51 +1,141 @@
 {
-  "monday": {
-    "La Fiamma Woodfire Pizza": {
-      "dish": "8\" Pizza w/ Garden Salad",
+  "La Fiamma Woodfire Pizza": {
+    "8\" Pizza w/ Garden Salad": {
       "price": "8.75",
-      "note": "Served until 4:00PM every day."
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "16:00:00",
+      "note": null
     }
   },
-  "tuesday": {
-    "La Fiamma Woodfire Pizza": {
-      "dish": "8\" Pizza w/ Garden Salad",
-      "price": "8.75",
-      "note": "Served until 4:00PM every day."
+  "The Teriyaki Bar": {
+    "Chicken Teriyaki": {
+      "price": "6.95",
+      "valid": ["mon"],
+      "start": "11:00:00",
+      "end": "15:00:00",
+      "note": null
+    },
+    "Beef Teriyaki": {
+      "price": "6.95",
+      "valid": ["tue"],
+      "start": "11:00:00",
+      "end": "15:00:00",
+      "note": null
+    },
+    "Spicy Chicken Teriyaki": {
+      "price": "6.95",
+      "valid": ["wed"],
+      "start": "11:00:00",
+      "end": "15:00:00",
+      "note": null
+    },
+    "Pork Teriyaki": {
+      "price": "6.95",
+      "valid": ["thu"],
+      "start": "11:00:00",
+      "end": "15:00:00",
+      "note": null
+    },
+    "Chicken &amp; Gyoza": {
+      "price": "6.95",
+      "valid": ["fri"],
+      "start": "11:00:00",
+      "end": "15:00:00",
+      "note": null
     }
   },
-  "wednesday": {
-    "La Fiamma Woodfire Pizza": {
-      "dish": "8\" Pizza w/ Garden Salad",
-      "price": "8.75",
-      "note": "Served until 4:00PM every day."
-    }
-  },
-  "thursday": {
-    "La Fiamma Woodfire Pizza": {
-      "dish": "8\" Pizza w/ Garden Salad",
-      "price": "8.75",
-      "note": "Served until 4:00PM every day."
-    }
-  },
-  "friday": {
-    "La Fiamma Woodfire Pizza": {
-      "dish": "8\" Pizza w/ Garden Salad",
-      "price": "8.75",
-      "note": "Served until 4:00PM every day."
-    }
-  },
-  "saturday": {
-    "La Fiamma Woodfire Pizza": {
-      "dish": "8\" Pizza w/ Garden Salad",
-      "price": "8.75",
-      "note": "Served until 4:00PM every day."
-    }
-  },
-  "sunday": {
-    "La Fiamma Woodfire Pizza": {
-      "dish": "8\" Pizza w/ Garden Salad",
-      "price": "8.75",
-      "note": "Served until 4:00PM every day."
+  "Dragon River": {
+    "Sweet & sour pork or chicken": {
+      "price": "6.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Broccoli chicken or beef": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Gong Bao chicken or beef": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Vegetable chicken": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Cashew chicken": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Cabbage with Chinese sausage": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Veggie delight": {
+      "price": "6.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Ma Po tofu": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Garlic spinach": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Curry chicken": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Mongolian chicken or beef": {
+      "price": "7.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "General Tsao’s chicken": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
+    },
+    "Pork rib stew": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri","sat","sun"],
+      "start": "11:00:00",
+      "end": "15:30:00",
+      "note": null
     }
   }
 }
