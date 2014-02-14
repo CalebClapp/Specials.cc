@@ -17,9 +17,16 @@ table {
   border-collapse: separate;
 }
 
+table thead td {
+  border-bottom: 1px solid #BBB;
+}
+
 table th {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bold;
+}
+table td {
+  font-size: 0.7em;
 }
 
 /* atomic */
@@ -39,3 +46,9 @@ table th {
 .entries td:first-child { width: 35%;}
 .entries td:first-child + td { width: 40%;}
 .entries td:first-child + td + td { width: 15%;}
+
+/* tablesorter plugin */
+
+.tablesorter th {
+  cursor: pointer;
+}

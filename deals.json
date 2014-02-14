@@ -137,5 +137,163 @@
       "end": "15:30:00",
       "note": null
     }
+  },
+  "The Pita Pit": {
+    "Chicken Breast Pita": {
+      "price": "4.99",
+      "valid": ["mon"],
+      "start": "10:30:00",
+      "end": "21:45:00",
+      "note": null
+    },
+    "Falafel Pita": {
+      "price": "4.99",
+      "valid": ["tue"],
+      "start": "10:30:00",
+      "end": "21:45:00",
+      "note": null
+    },
+    "Turkey Pita": {
+      "price": "4.99",
+      "valid": ["wed"],
+      "start": "10:30:00",
+      "end": "21:45:00",
+      "note": null
+    },
+    "Hummus Pita": {
+      "price": "4.99",
+      "valid": ["thu"],
+      "start": "10:30:00",
+      "end": "21:45:00",
+      "note": null
+    },
+    "BLT Pita": {
+      "price": "4.99",
+      "valid": ["fri"],
+      "start": "10:30:00",
+      "end": "21:45:00",
+      "note": null
+    }
+  },
+  "Stone Pot": {
+    "Soondooboo (Soft Tofu Soup)": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Dwenjang Jjigae": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Kimchi Jjigae": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Sullungtang": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Yook Gae Jang": {
+      "price": "9.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Vegetable &amp; Meta Dolsot (Stone Pot) Bibimbap": {
+      "price": "9.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Seafood Dolsot (Stone Pot) Bibimbap": {
+      "price": "10.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Vegetable &amp; Tofu Dolsot (Stone Pot) Bibimbap": {
+      "price": "9.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Kimchi Dolsot (Stone Pot) Bibimbap": {
+      "price": "9.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Bibimbap": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Spicy Pork": {
+      "price": "10.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Bulgogi": {
+      "price": "10.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Chicken Bulgogi": {
+      "price": "10.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Spicy Chicken Bulgogi": {
+      "price": "10.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Seafood Noodle Soup": {
+      "price": "9.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Spicy Beef Noodle Soup": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    },
+    "Vegetable Noodle Soup": {
+      "price": "8.99",
+      "valid": ["mon","tue","wed","thu","fri"],
+      "start": "11:00:00",
+      "end": "14:30:00",
+      "note": null
+    }
   }
 }

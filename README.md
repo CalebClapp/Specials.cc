@@ -12,3 +12,4 @@ Things to do
 * Create $debug variable to set $start and $end vars to far earlier / far later.
 * If start time is in next 3 hours, put entry in "Upcoming Specials" div.
 * Include Tablesorter function so entries can be sorted by price.
+* Add address, phone number and tags to the restaurants for eventual filtering functionality.

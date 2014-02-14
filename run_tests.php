@@ -7,7 +7,7 @@
   echo "\n";
   echo test_equal("render_entry() with string and p tag",array(render_entry("Test","p"),"<p>Test</p>"));
   echo "\n";
-  echo test_equal("render_entry() with string, tag and class",array(render_entry("Test","p","sexier"),"<td class=\"sexier\">Test</td>"));
+  echo test_equal("render_entry() with string, tag and class",array(render_entry("Test","p","sexier"),"<p class=\"sexier\">Test</p>"));
   echo "\n";
 
 ?>
