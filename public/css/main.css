@@ -6,13 +6,14 @@ html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre
 body {
   font-family: 'Architects Daughter', cursive;
   font-size: 1.2em;
+  background: #333;
+  color: #eee;
 }
 
 h1 { font-size: 2.8em; }
 h2 { font-size: 2.0em; }
 
 table {
-
   border-spacing: 20px;
   border-collapse: separate;
 }
@@ -22,11 +23,11 @@ table thead td {
 }
 
 table th {
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: bold;
 }
 table td {
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 
 /* atomic */
@@ -36,13 +37,13 @@ table td {
 
 /* sections */
 
-.wrapper {}
+.wrapper { min-height: 100%;}
 .container { width: 90%; }
 .page-header {}
 
 /* Entry Table */
 
-.entries { width: 100%; }
+.entries { width: 100%; max-width: 960px; }
 .entries td:first-child { width: 35%;}
 .entries td:first-child + td { width: 40%;}
 .entries td:first-child + td + td { width: 15%;}

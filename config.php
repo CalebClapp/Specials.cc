@@ -1,6 +1,6 @@
 <?php
   
-  $debug = true;
+  $debug = false;
 
   date_default_timezone_set('America/Los_Angeles');
   $json = json_decode(file_get_contents('../deals.json')); 

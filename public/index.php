@@ -11,6 +11,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="js/vendor/jquery-1.11.0.min.js"></script>
+  <script src="js/vendor/jquery-migrate-1.2.1.min.js"></script>
   <script src="js/vendor/modernizr-2.7.1.min.js"></script>
   <script src="js/vendor/jquery.tablesorter.min.js"></script>
   <script src="js/vendor/jquery.tablesorter.pager.js"></script>
@@ -24,43 +25,42 @@
     <header class="page-header">
       <h1 class="tac">Bellingham Specials for <?php echo $today; ?></h1>
     </header>
-      <?php 
-        $html = "<table id=\"current-deals\" class=\"entries tablesorter m0a\"><thead><tr><th>Restaurant</th>
-        <th>Lunch Special</th><th>Price</th><th>Expires</th></tr></thead><tbody>";
-
-        foreach($json as $restaurant => $dishes) {
-          foreach($dishes as $dish => $meta) {
-            $start = new DateTime($meta->start);
-            $end = new DateTime($meta->end);
-
-            if($debug) {
-              $now=(strtotime($meta->start) + (strtotime($meta->end) - strtotime($meta->start)) / 2);
-            }
-
-            if (in_array($day_prefix, $meta->valid) &&
-                ($now >= strtotime($meta->start)) &&
-                  ($now <= strtotime($meta->end))) {
-              $html.="<tr>".render_entry($restaurant,"td","entry-restaurant").render_entry($dish,"td","entry-dish"); 
-                $meta_keys=array('price','note');
-
-                foreach($meta as $key => $value) { 
-                  if(in_array($key, $meta_keys)) {
-                    $html.=render_entry($value,"td","entry-".$key);
-                  } 
-                  if($key == 'end') {
-                    $html.=render_entry(date("H:i:s", (strtotime($value) - $now)),"td","entry-".$key);
-                  }  
-                } 
-              $html.="</tr>";
-            } 
+    <?php 
+      $html = "<table id=\"current-deals\" class=\"entries tablesorter m0a\"><thead><tr><th>Restaurant</th>
+      <th>Lunch Special</th><th>Price</th><th>Expires</th></tr></thead><tbody>";
+      foreach($json as $restaurant => $dishes) {
+        foreach($dishes as $dish => $meta) {
+          $start = new DateTime($meta->start);
+          $end = new DateTime($meta->end);
+          if($debug) {
+            $now=(strtotime($meta->start) + (strtotime($meta->end) - strtotime($meta->start)) / 2);
           }
-        } 
+          if (in_array($day_prefix, $meta->valid) &&
+              ($now >= strtotime($meta->start)) &&
+                ($now <= strtotime($meta->end))) {
+            if(!isset($has_deals)) { $has_deals = true; }
+            $html.="<tr>".render_entry($restaurant,"td","entry-restaurant").render_entry($dish,"td","entry-dish"); 
+            $meta_keys=array('price','note');
+            foreach($meta as $key => $value) { 
+              if(in_array($key, $meta_keys)) {
+                $html.=render_entry($value,"td","entry-".$key);
+              } 
+              if($key == 'end') {
+                $html.=render_entry(date("H:i:s", (strtotime($value) - $now)),"td","entry-".$key);
+              }  
+            } 
+            $html.="</tr>";
+          } 
+        }
+      } 
+      if(isset($has_deals)) {
         $html.="</tbody></table>";
-        echo $html;
-
-        ?>
+        echo $html;        
+      } else { ?>
+        <h2 class="tac">No deals happening now, check back later.</h2>
+    <?php } ?>
+    <!--TODO: Tablesorter Pagination -> <div id="current-deals-pagination" class="pager"></div>-->
   </div>
 </div>
-
 </body>
 </html>

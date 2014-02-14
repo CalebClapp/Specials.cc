@@ -1,3 +1,3 @@
 $(document).ready(function() { 
-  $("#current-deals").tablesorter( {sortList: [[2,0]]} ); 
+  $("#current-deals").tablesorter( {sortList: [[2,0]]} );
 }); 
