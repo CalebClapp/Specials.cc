@@ -30,24 +30,22 @@
       <th>Lunch Special</th><th>Price</th><th>Expires</th></tr></thead><tbody>";
       foreach($json as $restaurant => $dishes) {
         foreach($dishes as $dish => $meta) {
-          $start = new DateTime($meta->start);
-          $end = new DateTime($meta->end);
-          if($debug) {
-            $now=(strtotime($meta->start) + (strtotime($meta->end) - strtotime($meta->start)) / 2);
-          }
+          $start = new DateTime($meta->start, $timezone);
+          $end = new DateTime($meta->end, $timezone);
           if (in_array($day_prefix, $meta->valid) &&
-              ($now >= strtotime($meta->start)) &&
-                ($now <= strtotime($meta->end))) {
+              ($now >= $start) &&
+                ($now <= $end)) {
             if(!isset($has_deals)) { $has_deals = true; }
             $html.="<tr>".render_entry($restaurant,"td","entry-restaurant").render_entry($dish,"td","entry-dish"); 
-            $meta_keys=array('price','note');
             foreach($meta as $key => $value) { 
-              if(in_array($key, $meta_keys)) {
+              if($key == 'price') {
                 $html.=render_entry($value,"td","entry-".$key);
               } 
-              if($key == 'end') {
-                $html.=render_entry(date("H:i:s", (strtotime($value) - $now)),"td","entry-".$key);
-              }  
+              else if($key == 'end') {
+                $remaining = $now->diff($end);
+                $html.=render_entry( $remaining->format('%h:%I:%S') ,"td","entry-".$key);
+              }
+
             } 
             $html.="</tr>";
           } 
@@ -59,7 +57,21 @@
       } else { ?>
         <h2 class="tac">No deals happening now, check back later.</h2>
     <?php } ?>
-    <!--TODO: Tablesorter Pagination -> <div id="current-deals-pagination" class="pager"></div>-->
+    <!-- pager --> 
+    <div class="pager"> 
+            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/first.png" class="first"/> 
+            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/prev.png" class="prev"/> 
+            <span class="pagedisplay"></span> <!-- this can be any element, including an input --> 
+            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/next.png" class="next"/> 
+            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/last.png" class="last"/> 
+            <select class="pagesize" title="Select page size"> 
+                <option selected="selected" value="10">10</option> 
+                <option value="20">20</option> 
+                <option value="30">30</option> 
+                <option value="40">40</option> 
+            </select>  
+            <select class="gotoPage" title="Select page number"></select>
+    </div>
   </div>
 </div>
 </body>
