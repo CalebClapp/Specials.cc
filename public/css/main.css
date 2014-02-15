@@ -34,22 +34,53 @@ table td {
 
 .m0a { margin: 0 auto; }
 .tac { text-align: center; }
+.soon { color: #ffff00; }
+.expired { color: #ff0000; }
 
 /* sections */
 
-.wrapper { min-height: 100%;}
-.container { width: 90%; }
+.wrapper { 
+
+}
+.container { 
+  width: 90%; 
+  margin: 0 auto;
+}
 .page-header {}
 
 /* Entry Table */
 
-.entries { width: 100%; max-width: 960px; }
-.entries td:first-child { width: 35%;}
-.entries td:first-child + td { width: 40%;}
-.entries td:first-child + td + td { width: 15%;}
+.deals { 
+  margin: 20px auto 0;
+  max-width: 960px;
+  border-radius: 0 0 10px 10px;
+}
+.deals td:first-child { width: 35%;}
+.deals td:first-child + td { width: 40%;}
+.deals td:first-child + td + td { width: 15%;}
+
+.active {
+  background-image: linear-gradient(to bottom, #333, #335500);
+}
+.active > h2 { color: #99ff00;}
 
 /* tablesorter plugin */
 
 .tablesorter th {
   cursor: pointer;
+}
+
+.pager-container {
+
+}
+
+.pager {
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 10px 0 20px;
+}
+
+.pager-controls {
+  width: 88px;
+  margin: 0 auto;
 }

@@ -21,57 +21,68 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="container m0a">
+  <div class="container">
     <header class="page-header">
-      <h1 class="tac">Bellingham Specials for <?php echo $today; ?></h1>
+      <h1 class="tac"><?php echo $today; ?> Deals</h1>
     </header>
-    <?php 
-      $html = "<table id=\"current-deals\" class=\"entries tablesorter m0a\"><thead><tr><th>Restaurant</th>
-      <th>Lunch Special</th><th>Price</th><th>Expires</th></tr></thead><tbody>";
-      foreach($json as $restaurant => $dishes) {
-        foreach($dishes as $dish => $meta) {
-          $start = new DateTime($meta->start, $timezone);
-          $end = new DateTime($meta->end, $timezone);
-          if (in_array($day_prefix, $meta->valid) &&
-              ($now >= $start) &&
-                ($now <= $end)) {
-            if(!isset($has_deals)) { $has_deals = true; }
-            $html.="<tr>".render_entry($restaurant,"td","entry-restaurant").render_entry($dish,"td","entry-dish"); 
-            foreach($meta as $key => $value) { 
-              if($key == 'price') {
-                $html.=render_entry($value,"td","entry-".$key);
-              } 
-              else if($key == 'end') {
-                $remaining = $now->diff($end);
-                $html.=render_entry( $remaining->format('%h:%I:%S') ,"td","entry-".$key);
-              }
+    <div class="deals active">
+      <h2 class="tac">Specials Happening Right Now</h2>
+      <?php 
+        $html = "<table class=\"tablesorter m0a\"><thead><tr><th>Place</th>
+        <th>Special</th><th>Price</th><th>Expires</th></tr></thead><tbody>";
+        foreach($json as $place => $specials) {
+          foreach($specials as $special => $meta) {
+            $start = new DateTime($meta->start, $timezone);
+            $end = new DateTime($meta->end, $timezone);
+            if (in_array($day_prefix, $meta->valid) &&
+                ($now >= $start) &&
+                  ($now <= $end)) {
+              if(!isset($has_deals)) { $has_deals = true; }
+              $html.="<tr>".render_entry($place,"td","entry-place").render_entry($special,"td","entry-special"); 
+              foreach($meta as $key => $value) { 
+                if($key == 'price') {
+                  $html.=render_entry($value,"td","entry-".$key);
+                } 
+                else if($key == 'end') {
+                  $remaining = $now->diff($end);
+                  $html.=render_entry( $remaining->format('%h:%I:%S') ,"td","entry-".$key);
+                }
 
+              } 
+              $html.="</tr>";
             } 
-            $html.="</tr>";
-          } 
-        }
-      } 
-      if(isset($has_deals)) {
-        $html.="</tbody></table>";
-        echo $html;        
-      } else { ?>
-        <h2 class="tac">No deals happening now, check back later.</h2>
-    <?php } ?>
-    <!-- pager --> 
-    <div class="pager"> 
-            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/first.png" class="first"/> 
-            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/prev.png" class="prev"/> 
-            <span class="pagedisplay"></span> <!-- this can be any element, including an input --> 
-            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/next.png" class="next"/> 
-            <img src="http://mottie.github.com/tablesorter/addons/pager/icons/last.png" class="last"/> 
-            <select class="pagesize" title="Select page size"> 
-                <option selected="selected" value="10">10</option> 
-                <option value="20">20</option> 
-                <option value="30">30</option> 
-                <option value="40">40</option> 
-            </select>  
-            <select class="gotoPage" title="Select page number"></select>
-    </div>
+          }
+        } 
+        if(isset($has_deals)) {
+          $html.="</tbody></table>";
+          echo $html;        
+        } else { ?>
+          <h2 class="tac">No deals happening now, check back later.</h2>
+      <?php } ?>
+      <!-- pager --> 
+      <div class="pager"> 
+        <div class="pager-controls">
+          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/first.png" class="first"/> 
+          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/prev.png" class="prev"/> 
+          <span class="pagedisplay"></span> <!-- this can be any element, including an input --> 
+          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/next.png" class="next"/> 
+          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/last.png" class="last"/>
+        </div>
+        <div class="pager-options">
+          <span>Show: </span>
+          <select class="pagesize" title="Deals to show"> 
+            <option selected="selected" value="5">5</option> 
+            <option value="10">10</option> 
+            <option value="20">20</option>  
+          </select>  
+          <span>Jump to: </span>
+          <select class="gotoPage" title="Select page number"></select>
+        </div>
+      </div>
+    </div> <!-- end of deals block -->
+    <footer class="page-footer">
+      <p>Footer here</p>
+    </footer>
   </div>
 </div>
 </body>

@@ -1,4 +1,8 @@
 $(document).ready(function() { 
-  $("#current-deals").tablesorter( {sortList: [[2,0]]} )
-  .tablesorterPager({container: $(".pager")});
+  $(".deals table").tablesorter( {sortList: [[2,0]]} )
+  .tablesorterPager({
+    container: $(".pager"),
+    size: 5,
+    fixedHeight: true
+  });
 }); 
