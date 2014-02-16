@@ -1,5 +1,5 @@
 <?php
-  $debug = false;
+  $debug = true;
   $json = json_decode(file_get_contents('../deals.json')); 
   $today = date('l');
   $day_prefix = strtolower(substr($today,0,3));

@@ -22,11 +22,12 @@
 <body>
 <div class="wrapper">
   <div class="container">
+    <a class="fork-me" href="https://github.com/ryananthony/Specials.cc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <header class="page-header">
-      <h1 class="tac"><?php echo $today; ?> Deals</h1>
+      <h1 class="tac"><?php echo $today; ?> Specials</h1>
     </header>
     <div class="deals active">
-      <h2 class="tac">Specials Happening Right Now</h2>
+      <h2 class="tac">Happening Right Now</h2>
       <?php 
         $html = "<table class=\"tablesorter m0a\"><thead><tr><th>Place</th>
         <th>Special</th><th>Price</th><th>Expires</th></tr></thead><tbody>";
@@ -61,19 +62,22 @@
       <?php } ?>
       <!-- pager --> 
       <div class="pager"> 
-        <div class="pager-controls">
-          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/first.png" class="first"/> 
-          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/prev.png" class="prev"/> 
-          <span class="pagedisplay"></span> <!-- this can be any element, including an input --> 
-          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/next.png" class="next"/> 
-          <img src="http://mottie.github.com/tablesorter/addons/pager/icons/last.png" class="last"/>
+        <div class="pager-controls cf">
+          <div class="first">
+            <span>first</span>
+          </div>
+          <div class="prev"></div>
+          <div class="next"></div>
+          <div class="last">
+            <span>last</span>
+          </div>
         </div>
         <div class="pager-options">
+          <span class="pagedisplay"></span>
           <span>Show: </span>
           <select class="pagesize" title="Deals to show"> 
             <option selected="selected" value="5">5</option> 
             <option value="10">10</option> 
-            <option value="20">20</option>  
           </select>  
           <span>Jump to: </span>
           <select class="gotoPage" title="Select page number"></select>
@@ -81,7 +85,24 @@
       </div>
     </div> <!-- end of deals block -->
     <footer class="page-footer">
-      <p>Footer here</p>
+      <div class="cf">
+        <div class="tri-fold">
+          <h3>Coming Soon</h3>
+          <h3></h3>
+          <p>left</p>
+        </div>
+        <div class="tri-fold">
+          <h3>Coming Soon</h3>
+          <p>mid</p>
+        </div>
+        <div class="tri-fold">
+          <h3>Coming Soon</h3>
+          <p>right</p>
+        </div>
+      </div>
+      <div class="legal">
+        <p>&copy;2014 <a href="http://www.ryananthonyrichardson.com/">Ryan Anthony Richardson</a>, the bass player in that 90's band <a href="http://www.rockingflannel.com/">Flannel</a>.</p>
+      </div>
     </footer>
   </div>
 </div>
