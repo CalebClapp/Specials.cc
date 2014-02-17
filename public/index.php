@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Bellingham Specials for <?php echo $today; ?></title>
+  <title>Bellingham Specials for <?php echo $GLOBALS["today"]; ?></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="js/vendor/jquery-1.11.0.min.js"></script>
@@ -24,42 +24,25 @@
   <div class="container">
     <a class="fork-me" href="https://github.com/ryananthony/Specials.cc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <header class="page-header">
-      <h1 class="tac"><?php echo $today; ?> Specials</h1>
+      <h1 class="tac"><?php echo $GLOBALS["today"]; ?> Specials</h1>
     </header>
     <div class="deals active">
       <h2 class="tac">Happening Right Now</h2>
       <?php 
-        $html = "<table class=\"tablesorter m0a\"><thead><tr><th>Place</th>
-        <th>Special</th><th>Price</th><th>Expires</th></tr></thead><tbody>";
-        foreach($json as $place => $specials) {
+        $table_head = render_specials_hdr('tablesorter','Place','Special','Price','Ends');
+        $table_body = "";
+        foreach($GLOBALS["specials"] as $place => $specials) {
           foreach($specials as $special => $meta) {
-            $start = new DateTime($meta->start, $timezone);
-            $end = new DateTime($meta->end, $timezone);
-            if (in_array($day_prefix, $meta->valid) &&
-                ($now >= $start) &&
-                  ($now <= $end)) {
-              if(!isset($has_deals)) { $has_deals = true; }
-              $html.="<tr>".render_entry($place,"td","entry-place").render_entry($special,"td","entry-special"); 
-              foreach($meta as $key => $value) { 
-                if($key == 'price') {
-                  $html.=render_entry($value,"td","entry-".$key);
-                } 
-                else if($key == 'end') {
-                  $remaining = $now->diff($end);
-                  $html.=render_entry( $remaining->format('%h:%I:%S') ,"td","entry-".$key);
-                }
-
-              } 
-              $html.="</tr>";
-            } 
+            $table_body .= render_special($meta,$place,$special);
           }
-        } 
-        if(isset($has_deals)) {
-          $html.="</tbody></table>";
-          echo $html;        
-        } else { ?>
+        }
+
+        if($table_body == "") { ?>
           <h2 class="tac">No deals happening now, check back later.</h2>
-      <?php } ?>
+      <?php } else {
+          echo $table_head.$table_body."</tbody></table>";
+        }
+      ?>
       <!-- pager --> 
       <div class="pager"> 
         <div class="pager-controls cf">
