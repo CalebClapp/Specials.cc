@@ -26,47 +26,12 @@
     <header class="page-header">
       <h1 class="tac"><?php echo $GLOBALS["today"]; ?> Specials</h1>
     </header>
-    <div class="deals active">
-      <h2 class="tac">Happening Right Now</h2>
-      <?php 
-        $table_head = render_specials_hdr('tablesorter','Place','Special','Price','Ends');
-        $table_body = "";
-        foreach($GLOBALS["specials"] as $place => $specials) {
-          foreach($specials as $special => $meta) {
-            $table_body .= render_special($meta,$place,$special);
-          }
-        }
+    
+    <?php 
+      echo render_specials($GLOBALS["lunch"], "active");
+      include_once("tablesorter_pager.php");
+    ?>
 
-        if($table_body == "") { ?>
-          <h2 class="tac">No deals happening now, check back later.</h2>
-      <?php } else {
-          echo $table_head.$table_body."</tbody></table>";
-        }
-      ?>
-      <!-- pager --> 
-      <div class="pager"> 
-        <div class="pager-controls cf">
-          <div class="first">
-            <span>first</span>
-          </div>
-          <div class="prev"></div>
-          <div class="next"></div>
-          <div class="last">
-            <span>last</span>
-          </div>
-        </div>
-        <div class="pager-options">
-          <span class="pagedisplay"></span>
-          <span>Show: </span>
-          <select class="pagesize" title="Deals to show"> 
-            <option selected="selected" value="5">5</option> 
-            <option value="10">10</option> 
-          </select>  
-          <span>Jump to: </span>
-          <select class="gotoPage" title="Select page number"></select>
-        </div>
-      </div>
-    </div> <!-- end of deals block -->
     <footer class="page-footer">
       <div class="cf">
         <div class="tri-fold">

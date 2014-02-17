@@ -75,20 +75,20 @@ table td {
 
 /* Entry Table */
 
-.deals { 
+.specials { 
   margin: 20px auto 0;
   width: 95%;
   border-radius: 0 0 10px 10px;
   background: #001226;
 }
 
-.deals table {
+.specials table {
   width: 95%;
   margin: 0 auto;
 }
-.deals td:first-child { width: 35%;}
-.deals td:first-child + td { width: 40%;}
-.deals td:first-child + td + td { width: 15%;}
+.specials td:first-child { width: 35%;}
+.specials td:first-child + td { width: 40%;}
+.specials td:first-child + td + td { width: 15%;}
 
 .active > h2 { color: #99ff00;}
 
