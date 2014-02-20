@@ -29,15 +29,15 @@
     </header>
     
     <?php 
-      echo render_specials($GLOBALS["lunch"], "active");
-    ?>
+      $active = render_specials($GLOBALS["lunch"], "active");
+      $soon = render_specials($GLOBALS["lunch"], "soon");
+      $done = render_specials($GLOBALS["lunch"], "done");
 
-    <?php 
-      echo render_specials($GLOBALS["lunch"], "soon");
-    ?>
-
-    <?php 
-      echo render_specials($GLOBALS["lunch"], "done");
+      if (!$active && !$soon && !$done) { ?>
+        <h1 class="tac alert">No Specials right now, check back later.</h1>
+      <?php } else {
+        echo $active.$soon.$done;
+      }
     ?>
 
     <footer class="page-footer">

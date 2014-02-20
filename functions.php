@@ -60,14 +60,16 @@
         switch ($type) {
           case "soon":
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
-                  ($GLOBALS["now"] <= $start)) {
+                  ($GLOBALS["now"] <= $start) &&
+                  (time_diff($start) < 2)) {
               $table_body.=render_special($place,$special,$meta,$start);
               $special_count++;
             }
             break;
           case "done":
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
-                ($GLOBALS["now"] >= $end)) {
+                ($GLOBALS["now"] >= $end) &&
+                (time_diff($end) < 1)) {
               $table_body.=render_special($place,$special,$meta,$end);
               $special_count++;
             }
@@ -124,7 +126,7 @@
   }
 
   // $time_constant is a DateTime object
-  // returns string of remaining time from $base to $end
+  // returns string of remaining time from "now" until given time
   function time_diff($time_constant) {
     $until = $GLOBALS["now"]->diff($time_constant);
     return $until->format('%h:%I:%S');
