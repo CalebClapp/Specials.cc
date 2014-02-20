@@ -10,99 +10,90 @@
     return $entry .= ">".$string."</".$tag.">";
   }
 
-  // takes a string of the classes for the table and 
-  // arbitrary number of <th> text nodes
-  // returns string of "<table> -> <tbody>"
-  function render_specials_hdr($classes) {
-    $headings = array_slice(func_get_args(), 1);
-    $header = "<table class=\"".$classes."\"><thead><tr>";
-    for($i=0;$i<count($headings);$i++) { $header.="<th>".$headings[$i]."</th>"; }
-    $header.="</tr></thead><tbody>"; 
-    return $header;
+  // takes a string of the classes for the table and the type of special block
+  // returns string of "<h2>+<table>-><tbody>"
+  function render_specials_hdr($classes,$type) {
+    $header = "<table class=\"".$classes."\"><thead><tr><th>Place</th><th>Special</th><th>Price</th><th>";
+    switch ($type) {
+      case "soon":
+        $h2 = "<h2>Starting Soon</h2>";
+        $header.="Begins";
+        break;
+      case "done":
+        $h2 = "<h2>Recently Ended</h2>";
+        $header.="Ended";
+        break;
+      default:
+        $h2 = "<h2>Happening Now</h2>";
+        $header.="Ends";
+        break;
+    }
+    $header.="</th></tr></thead><tbody>"; 
+    return $h2.$header;
   }
 
+  // returns an HTML-formatted single special as a string
+  function render_special($place,$special,$meta,$time) {
+    $special_row = "<tr>".render_tag($place,"td","entry-place").render_tag($special,"td","entry-special");
+    foreach($meta as $key => $value) { 
+      if($key == "price") {
+        $special_row.=render_tag($value,"td","entry-".$key);
+      } 
+      else if($key == "end") {
+        $special_row.=render_tag( time_diff($time) ,"td","entry-clock");
+      }
+    }
+    return $special_row.="</tr>";
+  }
 
   // takes top-level JSON object and type of specials block (active,soon,done)
   // returns false if no matching specials, otherwise a specials HTML div as a string
   function render_specials($json, $type) {
-    $specials_block = "<div class=\"specials ".$type."\">";
     $table_body = "";
-    switch ($type) {
-      case "soon":
-        $h2 = "<h2>Starting Soon</h2>";
-        $table_head = render_specials_hdr('tablesorter','Place','Special','Price','Begins');
-        foreach($json as $place => $specials) {
-          foreach($specials as $special => $meta) {
-            $start = new DateTime($meta->start, $GLOBALS["timezone"]);
-            $end = new DateTime($meta->end, $GLOBALS["timezone"]);
+    $table_head = "";
+    $special_count = 0;
+
+    foreach($json as $place => $specials) {
+      foreach($specials as $special => $meta) {
+        $start = new DateTime($meta->start, $GLOBALS["timezone"]);
+        $end = new DateTime($meta->end, $GLOBALS["timezone"]);
+        switch ($type) {
+          case "soon":
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
                   ($GLOBALS["now"] <= $start)) {
-              $table_body .= "<tr>".render_tag($place,"td","entry-place").render_tag($special,"td","entry-special");
-              foreach($meta as $key => $value) { 
-                if($key == "price") {
-                  $table_body.=render_tag($value,"td","entry-".$key);
-                } 
-                else if($key == "end") {
-                  $table_body.=render_tag( time_diff($start) ,"td","entry-".$key);
-                }
-              }
-              $table_body.="</tr>";
+              $table_body.=render_special($place,$special,$meta,$start);
+              $special_count++;
             }
-          }
-        }
-        break;
-      case "done":
-        $h2 = "<h2>Recently Ended</h2>";
-        $table_head = render_specials_hdr('tablesorter','Place','Special','Price','Ended');
-        foreach($json as $place => $specials) {
-          foreach($specials as $special => $meta) {
-            $start = new DateTime($meta->start, $GLOBALS["timezone"]);
-            $end = new DateTime($meta->end, $GLOBALS["timezone"]);
+            break;
+          case "done":
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
                 ($GLOBALS["now"] >= $end)) {
-              $table_body .= "<tr>".render_tag($place,"td","entry-place").render_tag($special,"td","entry-special");
-              foreach($meta as $key => $value) { 
-                if($key == "price") {
-                  $table_body.=render_tag($value,"td","entry-".$key);
-                } 
-                else if($key == "end") {
-                  $table_body.=render_tag( time_diff($end) ,"td","entry-".$key);
-                }
-              }
-              $table_body.="</tr>";
+              $table_body.=render_special($place,$special,$meta,$end);
+              $special_count++;
             }
-          }
-        }
-        break;
-      default:
-        $h2 = "<h2>Happening Now</h2>";
-        $table_head = render_specials_hdr('tablesorter','Place','Special','Price','Ends');
-        foreach($json as $place => $specials) {
-          foreach($specials as $special => $meta) {
-            $start = new DateTime($meta->start, $GLOBALS["timezone"]);
-            $end = new DateTime($meta->end, $GLOBALS["timezone"]);
+            break;
+          default:
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
                 ($GLOBALS["now"] >= $start) &&
                   ($GLOBALS["now"] <= $end)) {
-              $table_body .= "<tr>".render_tag($place,"td","entry-place").render_tag($special,"td","entry-special");
-              foreach($meta as $key => $value) { 
-                if($key == "price") {
-                  $table_body.=render_tag($value,"td","entry-".$key);
-                } 
-                else if($key == "end") {
-                  $table_body.=render_tag( time_diff($end) ,"td","entry-".$key);
-                }
-              }
-              $table_body.="</tr>";
+              $table_body.=render_special($place,$special,$meta,$end);
+              $special_count++;
             }
-          }
+            break;
         }
-        break;
+      }
     }
     if($table_body == "") {
       return false;
     } else {
-      return $specials_block.=$h2.$table_head.$table_body."</tbody></table>".render_pager($type)."</div>";
+      $table_body.="</tbody></table>";
+      if ($special_count > 5) { //only show pager if there is more than 5 specials
+        $table_body.=render_pager($type);
+        $table_head = render_specials_hdr("tablesorter",$type);
+      } else {
+        $table_head = render_specials_hdr("",$type);
+      }
+      return "<div class=\"specials ".$type."\">".$table_head.$table_body."</div>";;
     }
   }
 
