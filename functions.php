@@ -33,8 +33,8 @@
   }
 
   // returns an HTML-formatted single special as a string
-  function render_special($place,$special,$meta,$time) {
-    $special_row = "<tr>".render_tag($place,"td","entry-place").render_tag($special,"td","entry-special");
+  function render_special($place,$special,$meta,$time,$address,$phone) {
+    $special_row = "<tr data-phone=\"".$phone."\" data-address=\"".$address."\">".render_tag($place,"td","entry-place").render_tag($special,"td","entry-special");
     foreach($meta as $key => $value) { 
       if($key == "price") {
         $special_row.=render_tag($value,"td","entry-".$key);
@@ -53,7 +53,10 @@
     $table_head = "";
     $special_count = 0;
 
-    foreach($json as $place => $specials) {
+    foreach($json as $place => $data) {
+      $address = $data->address;
+      $phone = $data->phone;
+      $specials = $data->specials;
       foreach($specials as $special => $meta) {
         $start = new DateTime($meta->start, $GLOBALS["timezone"]);
         $end = new DateTime($meta->end, $GLOBALS["timezone"]);
@@ -62,7 +65,7 @@
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
                   ($GLOBALS["now"] <= $start) &&
                   (time_diff($start) < 2)) {
-              $table_body.=render_special($place,$special,$meta,$start);
+              $table_body.=render_special($place,$special,$meta,$start,$address,$phone);
               $special_count++;
             }
             break;
@@ -70,7 +73,7 @@
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
                 ($GLOBALS["now"] >= $end) &&
                 (time_diff($end) < 1)) {
-              $table_body.=render_special($place,$special,$meta,$end);
+              $table_body.=render_special($place,$special,$meta,$end,$address,$phone);
               $special_count++;
             }
             break;
@@ -78,7 +81,7 @@
             if (in_array($GLOBALS["today_prefix"], $meta->valid) &&
                 ($GLOBALS["now"] >= $start) &&
                   ($GLOBALS["now"] <= $end)) {
-              $table_body.=render_special($place,$special,$meta,$end);
+              $table_body.=render_special($place,$special,$meta,$end,$address,$phone);
               $special_count++;
             }
             break;
